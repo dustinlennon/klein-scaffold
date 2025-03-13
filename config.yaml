@@ -1,7 +1,6 @@
 install_path: /home/dnlennon/Workspace/Sandbox/klein-scaffold
 env_prefix: SITE
-defaults:
-  hostname: localhost
-  port: 8092
+env_defaults:
   interface: 0.0.0.0
+  url_root: https://apricot.mrdl:8082
 
