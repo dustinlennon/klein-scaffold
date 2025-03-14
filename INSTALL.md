@@ -28,6 +28,16 @@ curl localhost:8082/welcome
 ```
 
 
+Install into An Existing Repo
+====
+
+```bash
+git remote add klein-scaffold git@github.com:dustinlennon/klein-scaffold.git
+git fetch klein-scaffold
+git merge --allow-unrelated-histories klein-scaffold/main
+git remote remove klein-scaffold
+```
+
 
 Run Scenarios
 ====
