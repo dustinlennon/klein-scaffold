@@ -26,3 +26,26 @@ sudo systemct start ./site-example.service
 curl localhost:8082/welcome
 
 ```
+
+
+
+Run Scenarios
+====
+
+```bash
+# local
+pipenv run python3 app/scaffold/builder.py --config app/config.yaml
+pipenv run python3 app/scaffold/builder.py --config app/config.yaml --production
+pipenv run python3 -m app.scaffold.builder --production --config app/config.yaml
+
+# local dynamic reload
+app/serve.sh
+
+# twistd
+pipenv run twistd -ny app/server.tac
+
+# docker
+SCAFFOLD_PATH=$(pwd) docker-compose -f docker-compose.yaml build
+SCAFFOLD_PATH=$(pwd) docker-compose -f docker-compose.yaml up --force-recreate -V
+
+```

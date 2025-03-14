@@ -4,6 +4,8 @@ COPY requirements.txt /requirements.txt
 RUN pip install -r /requirements.txt
 
 ENV PYTHONPATH=/home/app
-WORKDIR /home/app
+ENV SCAFFOLD_PATH=/home
+
+WORKDIR /home
 
 CMD ["/usr/local/bin/twistd", "-ny", "/home/app/server.tac"]

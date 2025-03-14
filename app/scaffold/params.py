@@ -35,9 +35,7 @@ def _preprocess(d):
 class Params(object):
   def __init__(self, cfg):
     self._env_prefix    = cfg.env_prefix
-
-    self.app_path   = os.environ.get(f"{self._env_prefix}_APP_PATH",  self._find_app_path())
-    
+  
     timezone        = os.environ.get(f"{self._env_prefix}_TIMEZONE",  cfg.env_defaults.timezone)
     self._tz        = pytz.timezone(timezone)
 
@@ -45,6 +43,9 @@ class Params(object):
 
     url_root        = os.environ.get(f"{self._env_prefix}_URL_ROOT",  cfg.env_defaults.url_root)
     self._url_root  = url_root
+
+    scaffold_path   = os.environ.get("SCAFFOLD_PATH",  self._find_scaffold_path())
+    self.app_path   = f"{scaffold_path}/app"
 
     parsed_url        = urlparse(url_root)
     self._parsed_url  = parsed_url
@@ -58,20 +59,18 @@ class Params(object):
     cfg = get_config(config_path)
     return cls(cfg)
 
-  def _find_app_path(self):
+  def _find_scaffold_path(self):
     try:
       with open("dotenv") as f:
         for line in f.readlines():
           key,value = line.strip().split("=", 1)
           if key == "SCAFFOLD_PATH":
-            root_path = value
+            scaffold_path = value
             break
     except FileNotFoundError:
-      root_path = os.getcwd()
+      scaffold_path = os.getcwd()
     
-    app_path = f"{root_path}/app"
-
-    return app_path
+    return scaffold_path
 
   def url(self, *args, relative = False) -> str:
     rel_path = "/".join([a.strip("/") for a in args])

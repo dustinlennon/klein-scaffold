@@ -5,7 +5,7 @@ from scaffold.builder import WebsiteBuilder
 from scaffold.params import Params
 
 application = service.Application('web')
-params = Params.from_path("config.yaml")
+params = Params.from_path("app/config.yaml")
 
 website = (
     WebsiteBuilder(params)
