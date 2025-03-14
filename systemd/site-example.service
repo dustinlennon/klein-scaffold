@@ -1,0 +1,14 @@
+# file: example-site.service
+[Unit]
+Description=site-example
+After=network-online.target
+
+[Service]
+Type=exec
+Restart=on-success
+WorkingDirectory=/opt/site-example
+EnvironmentFile=/opt/site-example/dotenv
+ExecStart=docker-compose -f docker-compose.yaml up --renew-anon-volumes
+
+[Install]
+WantedBy=multi-user.target

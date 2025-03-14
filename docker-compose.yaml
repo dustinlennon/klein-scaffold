@@ -1,0 +1,25 @@
+#
+#  SCAFFOLD_PATH=$(pwd) docker-compose -f docker-compose.yaml build
+#  SCAFFOLD_PATH=$(pwd) docker-compose -f docker-compose.yaml up --force-recreate -V
+#
+services:
+  klein-scaffold:
+    container_name: site-example
+
+    image: klein-scaffold/example
+    build:
+      context: .
+    
+    environment:
+      EXAMPLE_APP_PATH: /home/app
+      EXAMPLE_URL_ROOT: https://dlennon.org/example
+      EXAMPLE_TIMEZONE: UTC
+
+    ports:
+    - published: 8082
+      target: 80
+
+    volumes:
+    - type: bind
+      source: ${SCAFFOLD_PATH}/app
+      target: /home/app

@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 klein = "*"
 pyyaml = "*"
+jinja2 = "*"
+pytz = "*"
 
 [dev-packages]
 

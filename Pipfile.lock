@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e2b16e740144f122eb0620e52e5c6d967f401e9d49d7ab71a12eecec973435ba"
+            "sha256": "2de8cb0bd6b8dd0f125e43e5cb54b697157e81d34f48b83b401aa94bd11d5158"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -63,6 +63,15 @@
             ],
             "markers": "python_version >= '3.8'",
             "version": "==24.7.2"
+        },
+        "jinja2": {
+            "hashes": [
+                "sha256:0137fb05990d35f1275a587e9aee6d56da821fc83491a0fb838183be43f66d6d",
+                "sha256:85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.7'",
+            "version": "==3.1.6"
         },
         "klein": {
             "hashes": [
@@ -139,6 +148,14 @@
             ],
             "markers": "python_version >= '3.9'",
             "version": "==3.0.2"
+        },
+        "pytz": {
+            "hashes": [
+                "sha256:89dd22dca55b46eac6eda23b2d72721bf1bdfef212645d81513ef5d03038de57",
+                "sha256:c2db42be2a2518b28e65f9207c4d05e6ff547d1efa4086469ef855e4ab70178e"
+            ],
+            "index": "pypi",
+            "version": "==2025.1"
         },
         "pyyaml": {
             "hashes": [

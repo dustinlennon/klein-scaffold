@@ -1,0 +1,7 @@
+env_prefix: EXAMPLE
+env_defaults:
+  timezone: US/Pacific
+  app_path: /home/dnlennon/Workspace/Sandbox/klein-scaffold/app
+  interface: 0.0.0.0
+  url_root: http://localhost:8123
+
