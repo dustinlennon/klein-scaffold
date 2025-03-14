@@ -36,7 +36,8 @@ class Params(object):
   def __init__(self, cfg):
     self._env_prefix    = cfg.env_prefix
 
-    self.app_path   = os.environ.get(f"{self._env_prefix}_APP_PATH",  cfg.env_defaults.app_path)
+    self.app_path   = os.environ.get(f"{self._env_prefix}_APP_PATH",  self._find_app_path())
+    
     timezone        = os.environ.get(f"{self._env_prefix}_TIMEZONE",  cfg.env_defaults.timezone)
     self._tz        = pytz.timezone(timezone)
 
@@ -56,6 +57,21 @@ class Params(object):
   def from_path(cls, config_path):
     cfg = get_config(config_path)
     return cls(cfg)
+
+  def _find_app_path(self):
+    try:
+      with open("dotenv") as f:
+        for line in f.readlines():
+          key,value = line.strip().split("=", 1)
+          if key == "SCAFFOLD_PATH":
+            root_path = value
+            break
+    except FileNotFoundError:
+      root_path = os.getcwd()
+    
+    app_path = f"{root_path}/app"
+
+    return app_path
 
   def url(self, *args, relative = False) -> str:
     rel_path = "/".join([a.strip("/") for a in args])

@@ -64,10 +64,13 @@ if __name__ == '__main__':
   parser.add_argument('--config', required = True)
 
   args = parser.parse_args()
-  helpers = Params.from_path(args.config)
+  params = Params.from_path(args.config)
 
-  builder = WebsiteBuilder(helpers)
-  website = builder.build()
+  website = (
+      WebsiteBuilder(params)
+      .set_production(args.production)
+      .build()
+  )
 
   reactor.run()
 

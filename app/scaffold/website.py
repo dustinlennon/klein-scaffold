@@ -57,7 +57,12 @@ class Website(Routes):
 
   @property
   def service_exit_on_change(self):
-    service = TimerService(1, self.fingerprint, self.fp_test)
+    if self.production:
+      op = lambda cb, eb = None: None
+    else:
+      op = self.fingerprint
+      
+    service = TimerService(1, op, self.fp_test)
     return service
 
   def start_services(self):
@@ -83,7 +88,7 @@ class Website(Routes):
     return d
 
   def fp_test(self, md5):
-    if self.production == False and self._md5 != md5:
+    if self._md5 != md5:
       self.log.error("halting: md5 changed")
       self.exit_code = 1
       IReactorTime(reactor).callLater(0, reactor.stop)
